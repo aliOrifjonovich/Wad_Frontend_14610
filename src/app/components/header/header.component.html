@@ -1,0 +1,41 @@
+<header>
+  <div class="logo__wrapper">
+    <div class="logo">
+      <a href="" class="items">
+        <h3>Event</h3>
+        <p>Management</p>
+      </a>
+    </div>
+  </div>
+  <div class="pages">
+    <button
+      mat-raised-button
+      matTooltip="You can see Participants table "
+      aria-label="Button that displays a tooltip when focused or hovered over"
+      (click)="btnClick('participants')"
+    >
+      Participants
+    </button>
+
+    <button
+      mat-raised-button
+      matTooltip="All Events Table"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+      (click)="btnClick('events')"
+    >
+      Event Lists
+    </button>
+  </div>
+  <a
+    [style.display]="
+      router.url !== '/participants' && router.url !== '/events'
+        ? 'none'
+        : 'block'
+    "
+    class="btn"
+    [href]="
+      router.url === '/participants' ? '/create-participants' : '/create-events'
+    "
+    >Create</a
+  >
+</header>
