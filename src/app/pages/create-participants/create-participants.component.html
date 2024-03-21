@@ -28,7 +28,7 @@
         }
       </select>
     </div>
-    <button type="submit" [disabled]="participantsForm.invalid || participantsForm.pristine" [class.disabled]="participantsForm.invalid || participantsForm.pristine" class="btn btn-block">Submit</button>
+    <button type="submit" [disabled]="participantsForm.invalid || participantsForm.pristine" [class.disabled]="participantsForm.invalid || participantsForm.pristine" class="btn btn-block">{{ participantsId ? 'Update' : 'Submit' }}</button>
   </form>
 </div>
 

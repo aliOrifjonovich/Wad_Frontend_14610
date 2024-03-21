@@ -58,7 +58,5 @@ export class CreateEventsComponent {
         this.router.navigateByUrl("events");
       });
     }
-    // TODO: Use EventEmitter with form value
-    console.log(this.eventsForm.value);
   }
 }

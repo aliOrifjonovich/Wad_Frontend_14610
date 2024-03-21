@@ -24,4 +24,7 @@ export class ParticipantsService {
   createParticipants(participants: any){
     return this.http.post<CreateParticipants>(`${this.apiurl}/EventAttendees`, participants);
   };
+  updateParticipants(id: number, events: any){
+    return this.http.put(`${this.apiurl}/EventAttendees/${id}`, events);  
+  };
 }

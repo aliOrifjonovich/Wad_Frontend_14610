@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
 import { EventsType } from '../../Interfaces/EventsType';
 import { ParticipantsService } from '../../services/particpants.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -17,16 +17,14 @@ import { Router } from '@angular/router';
 export class CreateParticipantsComponent {
   router = inject(Router)
   eventsService = inject(EventsService)
+  route = inject(ActivatedRoute)
   participantService = inject(ParticipantsService)
   participants: ParticipantsService[]=[]
   events: EventsType[]=[]
+  participantsId: number = 0
 
 
-  ngOnInit() {
-    this.eventsService.getItems().subscribe((result) => {
-      this.events = result
-    });
-  }
+ 
 
   participantsForm = new FormGroup({
     attendeeName: new FormControl(''),
@@ -35,11 +33,37 @@ export class CreateParticipantsComponent {
     eventId: new FormControl('')
   })
 
+  ngOnInit() {
+    this.route.queryParamMap.subscribe(params => {
+      if(params.get('participantsId')) {
+        const id: number = Number(params.get('participantsId'))
+        this.participantsId = id
+        this.participantService.getEvents(id).subscribe((item: any) => {
+          this.participantsForm = new FormGroup({
+            attendeeName: new FormControl(item.attendeeName),
+            email: new FormControl(item.email),
+            ticketType: new FormControl(item.ticketType),
+            eventId: new FormControl(item.eventId)
+          });
+        });
+      }
+      this.eventsService.getItems().subscribe((result) => {
+        this.events = result
+      });
+    });
+
+  }
+
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.participantsForm.value);
-    this.participantService.createParticipants(this.participantsForm.value).subscribe(_=>{
-      this.router.navigateByUrl("participants")
-    })
+    if (this.participantsId) {
+      this.participantService.updateParticipants(this.participantsId, {id: this.participantsId, ...this.participantsForm.value}).subscribe(_ => {
+        this.router.navigateByUrl("participants");
+      });
+    } else {
+      this.participantService.createParticipants(this.participantsForm.value).subscribe(_=>{
+        this.router.navigateByUrl("participants")
+      })
+    }
+  
   }
 }

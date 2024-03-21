@@ -19,7 +19,7 @@
       <input type="date" name="eventDate" id="eventDate" formControlName="date"/>
     </div>
     
-    <button type="submit" [disabled]="eventsForm.invalid || eventsForm.pristine" [class.disabled]="eventsForm.invalid || eventsForm.pristine" class="btn btn-block">Submit</button>
+    <button type="submit" [disabled]="eventsForm.invalid || eventsForm.pristine" [class.disabled]="eventsForm.invalid || eventsForm.pristine" class="btn btn-block">{{ eventId ? 'Update' : 'Submit' }}</button>
   </form>
 </div>
 
