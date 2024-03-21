@@ -1,0 +1,35 @@
+<div class="wrapper">
+  <!-- create-participants -->
+  <form  [formGroup]="participantsForm" (ngSubmit)="onSubmit()" class="add-form">
+    <h1 class="title">Create Participants</h1>
+    <div class="form-control">
+      <label for="text">Name of Participants</label>
+      <input type="text" name="text" id="text" placeholder="Add participant's name" formControlName="attendeeName" />
+    </div>
+    <div class="form-control">
+      <label for="day">Email</label>
+      <input type="email" name="day" id="day" placeholder="Add email"  formControlName="email"/>
+    </div>
+    <div class="form-control form-control-check">
+      <label for="ticketType">Ticket Type</label>
+      <select name="ticketType" id="ticketType" formControlName="ticketType" class="selector">
+        <option value="">Select Ticket Type</option>
+        <option value="standard">Standard</option>
+        <option value="premium">Premium</option>
+        <option value="vip">VIP</option>
+      </select>
+    </div>
+    <div class="form-control form-control-check">
+      <label for="ticketType">Select Events</label>
+      <select name="ticketType" id="ticketType" formControlName="eventId" class="selector">
+        <option value="">Select Events</option>
+        @for (item of events; track item.id) {
+          <option [value]="item.id">{{item.eventName}}</option>
+        }
+      </select>
+    </div>
+    <button type="submit" [disabled]="participantsForm.invalid || participantsForm.pristine" [class.disabled]="participantsForm.invalid || participantsForm.pristine" class="btn btn-block">Submit</button>
+  </form>
+</div>
+
+

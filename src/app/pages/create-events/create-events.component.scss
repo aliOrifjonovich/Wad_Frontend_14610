@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.disabled {
+  background-color: gray;
+  color: white;
+  border: none;
+  cursor: not-allowed;
+}

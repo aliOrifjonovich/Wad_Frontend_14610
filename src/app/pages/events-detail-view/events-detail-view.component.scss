@@ -1,0 +1,27 @@
+.numberOfEvent{
+    color: steelblue;
+    letter-spacing: 2px;
+    font-weight: 500;
+    border-bottom: 2px solid steelblue;
+    line-height: 2;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+    .itemWrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid steelblue;
+        padding: 10px;
+        border-radius: 5px;
+
+        .Title{
+            font-size: 20px;
+        }
+    }
+}

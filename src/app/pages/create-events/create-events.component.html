@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <!-- create-participants -->
+  <form  [formGroup]="eventsForm" (ngSubmit)="onSubmit()" class="add-form">
+    <h1 class="title">Create Participants</h1>
+    <div class="form-control">
+      <label for="text">Event Name</label>
+      <input type="text" name="text" id="text" placeholder="Add event's name" formControlName="eventName" />
+    </div>
+    <div class="form-control">
+      <label for="day">Organizer</label>
+      <input type="email" name="day" id="day" placeholder="Add organizer"  formControlName="organizer"/>
+    </div>
+    <div class="form-control">
+      <label for="venue">Venue</label>
+      <input type="text" name="venue" id="venue" placeholder="Add venue"  formControlName="venue"/>
+    </div>
+    <div class="form-control">
+      <label for="eventDate">Event Date</label>
+      <input type="date" name="eventDate" id="eventDate" formControlName="date"/>
+    </div>
+    
+    <button type="submit" [disabled]="eventsForm.invalid || eventsForm.pristine" [class.disabled]="eventsForm.invalid || eventsForm.pristine" class="btn btn-block">Submit</button>
+  </form>
+</div>
+
+
+
